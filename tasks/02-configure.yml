@@ -21,3 +21,33 @@
      group: root
      mode: '0644'
   register: role_app_nfs_etc_sysconfig_nfs
+
+- name: Start rpcbind
+  service:
+     name: rpcbind
+     state: started
+
+- name: Enable rpcbind
+  service:
+     name: rpcbind
+     enabled: true
+
+- name: Start nfs
+  service:
+     name: nfs
+     state: started
+
+- name: Enable nfs
+  service:
+     name: nfs
+     enabled: true
+
+- name: Stop firewalld
+  service:
+     name: firewalld
+     state: stopped
+
+- name: Disable firewalld
+  service:
+     name: firewalld
+     enabled: false
