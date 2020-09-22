@@ -1,0 +1,7 @@
+- name: Install NFS package.
+  package:
+    name: nfs-utils
+    state: present
+  when:
+    - ansible_facts['distribution'] == "CentOS"
+

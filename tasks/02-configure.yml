@@ -1,0 +1,23 @@
+- name: Configure /etc/exports.
+  template:
+     src: templates/etc_exports.j2
+     dest: /etc/exports
+     owner: root
+     group: root
+     mode: '0644'
+  register: role_app_nfs_etc_exports
+
+- name: Create directories
+  file:
+     path: "{{ item.key }}"
+     state: directory
+  with_dict: "{{ role_app_nfs_exports }}"
+
+- name: Configure /etc/sysconfig/nfs.
+  template:
+     src: templates/etc_sysconfig_nfs-{{ ansible_facts['distribution'] }}-{{ ansible_facts['distribution_major_version'] }}.j2
+     dest: /etc/sysconfig/nfs
+     owner: root
+     group: root
+     mode: '0644'
+  register: role_app_nfs_etc_sysconfig_nfs
