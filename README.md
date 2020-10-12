@@ -3,6 +3,8 @@ Role Name
 
 A brief description of the role goes here.
 
+TODO: Instead of disabling firewalld, the firewallports should be opened for NFS.
+
 Requirements
 ------------
 
