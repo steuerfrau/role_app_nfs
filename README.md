@@ -1,40 +1,46 @@
-Role Name
+role_app_nfs
 =========
 
-A brief description of the role goes here.
+Sets up a NFS server.
 
-TODO: Instead of disabling firewalld, the firewallports should be opened for NFS.
+
+TODO
+------------
+
+Instead of disabling firewalld, the necessary firewallports should be opened for NFS.
+
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+playbook_baseinstall
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+Expects a variable "role_app_nfs_exports" that defines the necessary exports:
+``` 
+role_app_nfs_exports:
+   /export/secondary: "*(rw,async,no_root_squash,no_subtree_check)"
+   /export/primary: "*(rw,async,no_root_squash,no_subtree_check)"
+```
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+Nothing to say here.
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+Used in playbook_acs_single_node.
 
 License
 -------
 
-BSD
+GNU Public License v3.0
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Melanie Desaive, m.desaive@mailbox.org
